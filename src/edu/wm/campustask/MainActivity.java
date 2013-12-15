@@ -42,6 +42,12 @@ public class MainActivity extends Activity {
 		pass_box = (EditText)findViewById(R.id.password_input);
 		pass_box.setHintTextColor(Color.parseColor("#FFFFFF"));
 		user_name_box.setHintTextColor(Color.parseColor("#FFFFFF"));
+		
+		ParseUser cur_user = ParseUser.getCurrentUser();
+		if(cur_user != null){
+			Intent intent = new Intent(this, NavigationActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	@Override

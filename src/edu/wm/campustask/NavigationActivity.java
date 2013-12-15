@@ -25,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import edu.wm.campustask.fragments.PostTaskFragment;
+import edu.wm.campustask.fragments.PostedTasksFragment;
 import edu.wm.campustask.fragments.ProfileFragment;
 
 public class NavigationActivity extends Activity {
@@ -74,8 +75,8 @@ public class NavigationActivity extends Activity {
 		
     	//profile position
     	if(position == 0){
-    		Fragment profile_frag = new ProfileFragment();
-    		fragManager.beginTransaction().replace(R.id.content_frame, profile_frag).commit();
+    		Fragment cur_frag = new ProfileFragment();
+    		fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
     		// update selected item and title, then close the drawer
             nav_drawer_list.setItemChecked(position, true);
             setTitle(navigation_selections[position]);
@@ -88,12 +89,17 @@ public class NavigationActivity extends Activity {
     	}
     	//available tasks position
     	else if(position == 2){
-    		
+    		Fragment cur_frag = new PostedTasksFragment();
+    		fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
+    		//update selected item and title, then close the drawer
+    		nav_drawer_list.setItemChecked(position, true);
+    		setTitle(navigation_selections[position]);
+    		nav_drawer_layout.closeDrawer(nav_drawer_list);
     	}
     	//post a task position
     	else if(position == 3){
-    		Fragment profile_frag = new PostTaskFragment();
-    		fragManager.beginTransaction().replace(R.id.content_frame, profile_frag).commit();
+    		Fragment cur_frag = new PostTaskFragment();
+    		fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
    		 	//update selected item and title, then close the drawer
     		nav_drawer_list.setItemChecked(position, true);
     		setTitle(navigation_selections[position]);
@@ -142,6 +148,7 @@ public class NavigationActivity extends Activity {
     	cur_task.put("contact_number", contact_number.getText().toString());
     	cur_task.put("description", description.getText().toString());
     	cur_task.put("complete", false);
+    	cur_task.put("domain", ParseUser.getCurrentUser().getString("domain"));
     	cur_task.saveInBackground();
     	Toast tst = Toast.makeText(this, "Task has been created.", Toast.LENGTH_LONG);
     	tst.setGravity(Gravity.TOP, 0, 120);
@@ -200,8 +207,15 @@ public class NavigationActivity extends Activity {
     	EditText time_input = (EditText)findViewById(R.id.task_time_input);
     	date_input.setText("" + cur_month + "/" + dp.getDayOfMonth() + "/" + dp.getYear());
     	
-    	int offset_time = tp.getCurrentHour() + 1;
-    	time_input.setText("" + offset_time + ":" + tp.getCurrentMinute());
+    	int offset_time = tp.getCurrentHour();
+    	String cur_minute = "0";
+    	if(tp.getCurrentMinute() < 10){
+    		cur_minute = "0" + tp.getCurrentMinute();
+    	}
+    	else{
+    		cur_minute = "" + tp.getCurrentMinute();
+    	}
+    	time_input.setText("" + offset_time + ":" + cur_minute);
     	
     	dialog.dismiss();
     }
