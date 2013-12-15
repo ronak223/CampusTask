@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE" >
+
+    <EditText
+        android:id="@+id/task_title_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="93dp"
+        android:ems="10"
+        android:hint="task title" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/payment_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/task_title_input"
+        android:layout_below="@+id/task_title_input"
+        android:layout_marginTop="20dp"
+        android:hint="payment amount"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/task_date_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payment_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="date of task"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/task_time_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_date_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="time of task"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/number_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_time_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="contact number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/task_description_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/number_input"
+        android:layout_alignRight="@+id/number_input"
+        android:layout_below="@+id/number_input"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="description of task"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/post_task_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="168dp"
+        android:text="Post Task"
+        android:onClick="postTask" />
+
+    <ImageButton
+        android:id="@+id/calendar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/task_time_input"
+        android:layout_below="@+id/payment_input"
+        android:layout_toLeftOf="@+id/task_date_input"
+        android:onClick="showDateTimePickerDialog"
+        android:background="@null"
+        android:src="@drawable/calendar_48" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/task_title_input"
+        android:layout_toLeftOf="@+id/task_title_input"
+        android:src="@drawable/bookmark_48" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/task_date_input"
+        android:layout_toLeftOf="@+id/payment_input"
+        android:src="@drawable/cart_48" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/number_input"
+        android:layout_alignLeft="@+id/calendar_button"
+        android:src="@drawable/clock_48" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/task_description_input"
+        android:layout_toLeftOf="@+id/number_input"
+        android:src="@drawable/phone_48" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/task_description_input"
+        android:layout_toLeftOf="@+id/task_description_input"
+        android:src="@drawable/comment_48" />
+
+</RelativeLayout>

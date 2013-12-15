@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CampusTask</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+
+    <string-array name="nav_drawer_array">
+        <item>Profile</item>
+        <item>Active Tasks</item>
+        <item>Available Tasks</item>
+        <item>Post a Task</item>
+    </string-array>
+
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+</resources>
