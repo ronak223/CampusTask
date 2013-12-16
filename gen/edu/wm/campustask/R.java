@@ -44,7 +44,7 @@ public final class R {
         public static final int action_settings=0x7f090038;
         public static final int active_tasks_dialog_list=0x7f090032;
         public static final int app_title_text=0x7f090006;
-        public static final int calendar_button=0x7f090023;
+        public static final int calendar_button=0x7f090022;
         public static final int close_accepted_tasks_dialog_button=0x7f090001;
         public static final int close_dialog_button=0x7f090016;
         public static final int close_task_dialog_button=0x7f090033;
@@ -54,11 +54,11 @@ public final class R {
         public static final int content_frame=0x7f09000a;
         public static final int datePicker=0x7f090014;
         public static final int drawer_layout=0x7f090009;
-        public static final int imageView1=0x7f090024;
-        public static final int imageView2=0x7f090025;
-        public static final int imageView3=0x7f090026;
-        public static final int imageView4=0x7f090027;
-        public static final int imageView5=0x7f090028;
+        public static final int imageView1=0x7f090023;
+        public static final int imageView2=0x7f090024;
+        public static final int imageView3=0x7f090025;
+        public static final int imageView4=0x7f090026;
+        public static final int imageView5=0x7f090027;
         public static final int left_drawer=0x7f09000b;
         public static final int linearLayout1=0x7f090013;
         public static final int login_button=0x7f090007;
@@ -67,7 +67,7 @@ public final class R {
         public static final int password_img=0x7f090002;
         public static final int password_input=0x7f090003;
         public static final int payment_input=0x7f09001d;
-        public static final int post_task_button=0x7f090022;
+        public static final int post_task_button=0x7f090028;
         public static final int posted_tasks_header=0x7f090018;
         public static final int posted_tasks_listview=0x7f090029;
         public static final int profile_name_text=0x7f09000c;

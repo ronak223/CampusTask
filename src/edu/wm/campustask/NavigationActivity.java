@@ -1,11 +1,15 @@
 package edu.wm.campustask;
 
-import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -66,6 +70,20 @@ public class NavigationActivity extends Activity {
         nav_drawer_list.setItemChecked(0, true);
         setTitle(navigation_selections[0]);
         nav_drawer_layout.closeDrawer(nav_drawer_list);
+        
+        //timer for checking if task has been completed
+        /*
+        Timer comp_check_timer = new Timer();
+        comp_check_timer.scheduleAtFixedRate(new TimerTask(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        }, 0, 60000);
+        */
 	}
 
 	@Override
@@ -241,48 +259,18 @@ public class NavigationActivity extends Activity {
     	
     	dialog.dismiss();
     }
-    
-    /*
-    //PostedTaskFragment -- creating dialog for task details
-    Dialog task_dialog;
-    public void showTaskDetails(ArrayList<String> header_list, ArrayList<String> body_list){
-    	task_dialog = new Dialog(this);
-		task_dialog.setContentView(R.layout.task_details_layout);
-		task_dialog.setTitle("Task Details");
-		
-		ListView lv = (ListView)task_dialog.findViewById(R.id.active_tasks_dialog_list);
-        lv.setAdapter(new PostedTasksAdapter(this, header_list, body_list));
-        
-        Button close_button = (Button)task_dialog.findViewById(R.id.close_task_dialog_button);
-        close_button.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dismissTaskDetailsDialog(v);
-			}
-		});
-        
-        Button accept_task = (Button)task_dialog.findViewById(R.id.accept_task_dialog_button);
-        accept_task.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				acceptTask(v);
-			}
-		});
-        
-        task_dialog.show();
-    }
-    
-    //PostedTaskFragment -- dismissing task details dialog
-    public void dismissTaskDetailsDialog(View view){
-    	task_dialog.dismiss();
-    }
-    
-    //PostedTaskFragment -- accepting task
-    public void acceptTask(View view){
     	
+    public void createNotification(){
+    	Intent intent = new Intent(this, NavigationActivity.class);
+    	PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+    	
+    	Notification n = new Notification.Builder(this)
+    		.setContentTitle("Task Completed!")
+    		.setContentText("Check your task list.")
+    		.setAutoCancel(true)
+    		.setContentIntent(pIntent).build();
+    	
+    	NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    	notificationManager.notify(0, n);
     }
-    */
-
 }
