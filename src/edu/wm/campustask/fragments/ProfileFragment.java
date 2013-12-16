@@ -27,9 +27,14 @@ public class ProfileFragment extends Fragment {
         ParseUser cur_user = ParseUser.getCurrentUser();
     	if(cur_user != null){
     		TextView name_title = (TextView)prof_view.findViewById(R.id.profile_name_text); 
+    		TextView rep = (TextView)prof_view.findViewById(R.id.reputation_points);
+    		TextView tasks_comp = (TextView)prof_view.findViewById(R.id.tasks_completed);
     		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/GIDDYUPSTD.OTF");
     		name_title.setTypeface(tf, Typeface.BOLD);
     		name_title.setText(cur_user.getString("full_name"));
+    		rep.setText("" + cur_user.getInt("reputation"));
+    		tasks_comp.setText("" + cur_user.getInt("tasks_completed"));
+    		
     	}
         
         return prof_view;
