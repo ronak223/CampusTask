@@ -22,14 +22,16 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:background="@drawable/button_background" />
 
         <Button
             android:id="@+id/complete_task_dialog_button"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
-            android:text="Complete Task" />
+            android:text="Complete Task"
+            android:background="@drawable/button_background" />
     </LinearLayout>
 
 </LinearLayout>

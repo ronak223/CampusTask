@@ -64,7 +64,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="82dp"
         android:onClick="confirmReg"
-        android:text="Register" />
+        android:text="Register"
+        android:background="@drawable/button_background" />
 
     <EditText
         android:id="@+id/reg_email_input"

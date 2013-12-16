@@ -74,11 +74,13 @@
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/posted_tasks_header"
+        android:layout_alignRight="@+id/status_edit_text"
         android:layout_below="@+id/posted_tasks_header"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="162dp"
-        android:text="Logout"
-        android:onClick="logoutUser" />
+        android:background="@drawable/button_background"
+        android:onClick="logoutUser"
+        android:text="Logout" />
 
     <Button
         android:id="@+id/update_status_button"
@@ -86,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/status_edit_text"
         android:layout_toRightOf="@+id/status_edit_text"
+        android:background="@drawable/button_background"
         android:onClick="updateStatus"
         android:text="Update" />
 
