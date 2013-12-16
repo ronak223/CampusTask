@@ -16,13 +16,14 @@
     android:layout_height="wrap_content"
     android:id="@+id/row_title_text" 
     android:textSize="24sp"
-    android:textColor="#2576B0"
+    android:textColor="#b9b9b9"
     android:layout_marginBottom="20dp"/>
     
     <TextView 
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/row_description_text"
-    android:textColor="#b9b9b9"/>
+    android:textColor="#2576B0"
+    android:textSize="19sp"/>
     
 </LinearLayout>

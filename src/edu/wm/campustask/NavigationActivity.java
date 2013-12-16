@@ -1,5 +1,7 @@
 package edu.wm.campustask;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -24,6 +26,7 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import edu.wm.campustask.fragments.ActiveTasksFragment;
 import edu.wm.campustask.fragments.PostTaskFragment;
 import edu.wm.campustask.fragments.PostedTasksFragment;
 import edu.wm.campustask.fragments.ProfileFragment;
@@ -34,6 +37,8 @@ public class NavigationActivity extends Activity {
 	private String[] navigation_selections;
 	private DrawerLayout nav_drawer_layout;
 	private ListView nav_drawer_list;
+	//global PostedTasksFrag for reference in helper methods
+	Fragment pt_frag;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,16 @@ public class NavigationActivity extends Activity {
 	    // Set the adapter for the list view
         nav_drawer_list.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, navigation_selections));
         // Set the list's click listener
-        nav_drawer_list.setOnItemClickListener(new DrawerItemClickListener());
+        nav_drawer_list.setOnItemClickListener(new DrawerItemClickListener());   
+        
+        //starting on Profile activity
+        FragmentManager tmp_fragManager = getFragmentManager();
+        Fragment cur_frag = new ProfileFragment();
+		tmp_fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
+		// update selected item and title, then close the drawer
+        nav_drawer_list.setItemChecked(0, true);
+        setTitle(navigation_selections[0]);
+        nav_drawer_layout.closeDrawer(nav_drawer_list);
 	}
 
 	@Override
@@ -85,12 +99,19 @@ public class NavigationActivity extends Activity {
     	}
     	//active tasks position
     	else if(position == 1){
+    		Fragment cur_frag = new ActiveTasksFragment();
+    		fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
+    		//update selected item and title, then close the drawer
+    		nav_drawer_list.setItemChecked(position, true);
+    		setTitle(navigation_selections[position]);
+    		nav_drawer_layout.closeDrawer(nav_drawer_list);
     		
     	}
     	//available tasks position
     	else if(position == 2){
-    		Fragment cur_frag = new PostedTasksFragment();
-    		fragManager.beginTransaction().replace(R.id.content_frame, cur_frag).commit();
+    		//Fragment cur_frag = new PostedTasksFragment();
+    		pt_frag = new PostedTasksFragment();
+    		fragManager.beginTransaction().replace(R.id.content_frame, pt_frag).commit();
     		//update selected item and title, then close the drawer
     		nav_drawer_list.setItemChecked(position, true);
     		setTitle(navigation_selections[position]);
@@ -148,6 +169,7 @@ public class NavigationActivity extends Activity {
     	cur_task.put("contact_number", contact_number.getText().toString());
     	cur_task.put("description", description.getText().toString());
     	cur_task.put("complete", false);
+    	cur_task.put("accepted", false);
     	cur_task.put("domain", ParseUser.getCurrentUser().getString("domain"));
     	cur_task.saveInBackground();
     	Toast tst = Toast.makeText(this, "Task has been created.", Toast.LENGTH_LONG);
@@ -197,7 +219,7 @@ public class NavigationActivity extends Activity {
     	dialog.dismiss();
     }
     
-  //PostTaskFragment -- confirming date and time on OK button click
+    //PostTaskFragment -- confirming date and time on OK button click
     public void setDateTime(View view){
     	DatePicker dp = (DatePicker)dialog.findViewById(R.id.datePicker);
     	TimePicker tp = (TimePicker)dialog.findViewById(R.id.timePicker);
@@ -219,5 +241,48 @@ public class NavigationActivity extends Activity {
     	
     	dialog.dismiss();
     }
+    
+    /*
+    //PostedTaskFragment -- creating dialog for task details
+    Dialog task_dialog;
+    public void showTaskDetails(ArrayList<String> header_list, ArrayList<String> body_list){
+    	task_dialog = new Dialog(this);
+		task_dialog.setContentView(R.layout.task_details_layout);
+		task_dialog.setTitle("Task Details");
+		
+		ListView lv = (ListView)task_dialog.findViewById(R.id.active_tasks_dialog_list);
+        lv.setAdapter(new PostedTasksAdapter(this, header_list, body_list));
+        
+        Button close_button = (Button)task_dialog.findViewById(R.id.close_task_dialog_button);
+        close_button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dismissTaskDetailsDialog(v);
+			}
+		});
+        
+        Button accept_task = (Button)task_dialog.findViewById(R.id.accept_task_dialog_button);
+        accept_task.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				acceptTask(v);
+			}
+		});
+        
+        task_dialog.show();
+    }
+    
+    //PostedTaskFragment -- dismissing task details dialog
+    public void dismissTaskDetailsDialog(View view){
+    	task_dialog.dismiss();
+    }
+    
+    //PostedTaskFragment -- accepting task
+    public void acceptTask(View view){
+    	
+    }
+    */
 
 }
